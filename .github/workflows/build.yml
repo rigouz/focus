@@ -20,5 +20,5 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B -V -ntp -Djansi.passthrough=true -Dstyle.color=always package
+      run: mvn -B -V -ntp -Djansi.passthrough=true -Dstyle.color=always package -Pdeb
 

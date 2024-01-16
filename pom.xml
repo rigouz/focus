@@ -41,5 +41,67 @@
         </plugins>
     </build>
 
+    <profiles>
+        <!-- A profile for creating an rpm package on Linux -->
+        <profile>
+            <id>rpm</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.1.1</version>
+                        <executions>
+                            <execution>
+                                <id>rpm</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>ls</executable>
+                                    <arguments>
+                                        <argument>-l</argument>
+                                        <argument>${project.build.directory}/${project.build.finalName}.jar</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- A profile for creating a deb package on Linux -->
+        <profile>
+            <id>deb</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.1.1</version>
+                        <executions>
+                            <execution>
+                                <id>deb</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>${java.home}/bin/jps</executable>
+                                    <arguments>
+                                        <!--                                        <argument>-l</argument>-->
+                                        <!--                                        <argument>${project.build.directory}/${project.build.finalName}.jar</argument>-->
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 
 </project>
